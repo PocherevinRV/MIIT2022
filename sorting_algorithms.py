@@ -71,10 +71,26 @@ def binary_search(list_, search_elem):
     search_right = len(list_) - 1
     while search_left < search_right:
         search_middle = (search_left + search_right) // 2
-        if search_elem > list_[search_middle]:
+        if search_elem <= list_[search_middle]:
+            search_right = search_middle
+        else:
             search_left = search_middle + 1
-        elif search_elem < list_[search_middle]:
+    if search_left == search_right:
+        if list_[search_left] == search_elem:
+            return search_left
+        else:
+            return None
+    return None
+
+def old_binary_search(list_, search_elem):
+    search_left = 0
+    search_right = len(list_) - 1
+    while search_left < search_right:
+        search_middle = (search_left + search_right) // 2
+        if search_elem < list_[search_middle]:
             search_right = search_middle - 1
+        elif search_elem > list_[search_middle]:
+            search_left = search_middle + 1
         else:
             return search_middle
     if search_left == search_right:
@@ -105,6 +121,7 @@ def search_check(list_, search_elem, answer):
 
 search_test(simple_search)
 search_test(binary_search)
+search_test(old_binary_search()binary_search)
 #test(BubbleSort)
     
     
